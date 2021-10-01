@@ -1,12 +1,20 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const Details = () => {
+const Details = ({ navigation }) => {
   return (
-    <View>
-      <Text>Details</Text>
+    <View style={styled.container}>
+      <Text>Detail</Text>
     </View>
   )
 }
+
+const styled = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  }
+})
 
 export default Details
