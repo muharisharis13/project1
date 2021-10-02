@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Details from '../detail/Details';
@@ -30,15 +30,16 @@ const data = [
 
 const Home = () => {
   return (
+
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-      }}
-      tabBarOptions={{
-        style: { backgroundColor: 'tomato' },
+
       }}
     >
+
+
       {
         data.map(item => (
           <Tab.Screen
@@ -61,6 +62,7 @@ const Home = () => {
 
         ))
       }
+
     </Tab.Navigator>
   )
 }

@@ -1,6 +1,7 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native'
+import React, { useContext } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image, StatusBar } from 'react-native'
 import Icon from "react-native-vector-icons/Feather"
+import { Context } from '../../context'
 
 
 const data = [
@@ -42,11 +43,16 @@ const data = [
 ]
 
 const ProductList = ({ navigation }) => {
+  const { scroll, dispatch } = useContext(Context)
+
   return (
     <View style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor={scroll > 90 ? "white" : "transparent"} barStyle="dark-content" translucent={true} />
       {
-        0 > 0 ?
-          <TouchableOpacity style={styles.btnCart} onPress={() => navigation.navigate("Search")}>
+        data.length > 0 ?
+          <TouchableOpacity style={styles.btnCart} onPress={() => navigation.navigate("ListTransaction")}>
             <View>
               <Icon name="shopping-bag" style={{ fontSize: 25, color: "#fff" }} />
               <Text style={styles.TextLengthCart}>{data.length}</Text>
@@ -54,10 +60,10 @@ const ProductList = ({ navigation }) => {
           </TouchableOpacity>
           : null
       }
-      <ScrollView>
+      <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
         <View>
           <TouchableOpacity style={styles.Search} onPress={() => navigation.navigate("Search")}>
-            <Text style={styles.textSearch}>Search</Text>
+            <Text style={styles.textSearch}>Search </Text>
           </TouchableOpacity>
         </View>
 
@@ -76,9 +82,7 @@ const ProductList = ({ navigation }) => {
                     <TouchableOpacity style={styles.Btn}>
                       <Text style={styles.BtnText}>Add</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.Btn}>
-                      <Text style={styles.BtnText}>Detail</Text>
-                    </TouchableOpacity>
+
                   </View>
                 </View>
               </View>
@@ -96,8 +100,8 @@ export default ProductList
 
 const styles = StyleSheet.create({
   TextLengthCart: {
-    color: "#fff",
-    backgroundColor: "red",
+    color: "#000",
+    backgroundColor: "#fff",
     borderRadius: 100,
     height: 20,
     width: 20,
@@ -116,17 +120,25 @@ const styles = StyleSheet.create({
     elevation: 99,
     backgroundColor: "#000",
     padding: 15,
-    borderRadius: 100
+    borderRadius: 100,
+    borderColor: "#fff",
+    borderWidth: 1
   },
   Btn: {
     backgroundColor: "#000",
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
-    borderRadius: 5
+    borderRadius: 5,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center"
   },
   BtnText: {
-    color: "#fff"
+    color: "#fff",
+    fontWeight: "700",
+    textTransform: "uppercase"
   },
   containerCardButton: {
     flexDirection: "row",
@@ -183,6 +195,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    paddingTop: 20,
     position: "relative"
   }
 })
