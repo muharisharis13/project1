@@ -9,47 +9,38 @@ const data = [
   { nama: "" },
   { nama: "" },
   { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
 ]
-const ListTransaction = ({ navigation }) => {
+const EndTransaction = ({ navigation }) => {
   const { dispatch } = useContext(Context)
   return (
     <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
       <View style={styles.container}>
-        <Text style={styles.title}>List Transaction</Text>
+        <Text style={styles.title}>Transaction</Text>
 
         <View style={styles.containerCard} >
-          <Text style={styles.TitleCard}>List Product</Text>
-          {
-            data.map((item, index) => (
-              <View style={styles.containerContent} key={index}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontWeight: "600", fontSize: 18 }}>Kopi O</Text>
-                  <Text style={styles.TextPrice}>Rp. 6,000</Text>
-                </View>
-                <View style={styles.contentright}>
-                  <TouchableOpacity style={styles.btnPlusMinus}>
-                    <Icon name="minus" />
-                  </TouchableOpacity>
-                  <TextInput value="1" style={styles.InputQty} maxLength={1} editable={false} />
-                  <TouchableOpacity style={styles.btnPlusMinus}>
-                    <Icon name="plus" />
-                  </TouchableOpacity>
-                </View>
-              </View>
+          <View style={{ textAlign: "center", alignItems: "center", justifyContent: "center" }}>
+            <Text style={styles.TitleCard}>Transaction Success</Text>
+            <Text>12 July 2021 - 10:50</Text>
+            <Text>ID : 12314324234</Text>
 
-            ))
-          }
-        </View>
+          </View>
 
-        <View style={styles.containerCard} >
-          <Text style={styles.TitleCard}>Order Summary</Text>
+          <View style={{ marginBottom: 80 }}>
+            {
+              data.map((item, index) => (
+                <View style={styles.containerContent} key={index}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ fontWeight: "600", fontSize: 18 }}>Kopi O</Text>
+                    <Text style={styles.TextPrice}>Rp. 6,000</Text>
+                  </View>
+                  <View style={styles.contentright}>
+                    <TextInput value="1" style={styles.InputQty} maxLength={1} editable={false} />
+                  </View>
+                </View>
+
+              ))
+            }
+          </View>
 
           <View style={styles.containerContent}>
             <View style={{ flex: 1 }}>
@@ -60,17 +51,19 @@ const ListTransaction = ({ navigation }) => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.btnPayment} onPress={() => navigation.navigate("EndTransaction")}>
-            <Text style={styles.TextPayment}> Payment</Text>
+          <TouchableOpacity style={styles.btnPayment} onPress={() => navigation.replace("Home")}>
+            <Text style={styles.TextPayment}> Back To Home</Text>
           </TouchableOpacity>
         </View>
+
+
       </View>
 
     </ScrollView>
   )
 }
 
-export default ListTransaction
+export default EndTransaction
 
 const styles = StyleSheet.create({
   TextPayment: {
@@ -102,7 +95,8 @@ const styles = StyleSheet.create({
   },
   TitleCard: {
     fontWeight: "800",
-    fontSize: 23
+    fontSize: 23,
+    textAlign: "center"
   },
   InputQty: { color: "black", backgroundColor: "#F2F2F2", textAlign: "center", alignItems: "center", justifyContent: "center", borderRadius: 5, marginHorizontal: 20, maxHeight: 30, padding: 0 },
   contentright: {

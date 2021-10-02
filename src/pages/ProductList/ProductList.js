@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     paddingTop: 25,
-    position: "relative"
+    position: "relative",
+    paddingBottom: 100
   }
 })
