@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   btnCart: {
     position: "absolute",
-    bottom: 50,
+    bottom: 120,
     right: 30,
     zIndex: 99,
     elevation: 99,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
-    justifyContent: "space-between"
+    // justifyContent: "space-between"
   },
   textSearch: {
     color: "#707070",
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    paddingTop: 20,
+    paddingTop: 25,
     position: "relative"
   }
 })

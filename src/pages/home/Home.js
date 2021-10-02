@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Details from '../detail/Details';
@@ -8,6 +8,8 @@ import Setting from '../setting/Setting';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Icon2 from 'react-native-vector-icons/FontAwesome'
 import ProductList from '../ProductList/ProductList';
+
+const { width, height } = Dimensions.get("window")
 
 
 const data = [
@@ -35,7 +37,7 @@ const Home = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-
+        tabBarStyle: { position: 'absolute', bottom: 30, width: "95%", marginHorizontal: "2.5%", height: 70, borderRadius: 50, borderWidth: 0 },
       }}
     >
 
@@ -53,8 +55,12 @@ const Home = () => {
                     size={24}
                     style={{ color: focused ? "#000" : "#8e8e93" }}
                   />
+                  {
+                    focused ?
+                      <Text style={{ color: focused ? "#000" : "#8e8e93", fontSize: 10 }}>{item.name}</Text>
+                      : null
+                  }
 
-                  <Text style={{ color: focused ? "#000" : "#8e8e93" }}>{item.name}</Text>
                 </View>
               )
             }}
@@ -71,7 +77,9 @@ const styles = StyleSheet.create({
   containerIcon: {
     alignItems: "center",
     justifyContent: "center",
-    textAlign: "center"
+    textAlign: "center",
+    flex: 1,
+    width: width / 2,
   }
 })
 
