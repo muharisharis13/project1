@@ -60,12 +60,12 @@ const ProductList = ({ navigation }) => {
           </TouchableOpacity>
           : null
       }
-      <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
         <View>
           <TouchableOpacity style={styles.Search} onPress={() => navigation.navigate("Search")}>
             <Text style={styles.textSearch}>Search </Text>
           </TouchableOpacity>
         </View>
+      <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
 
         <View style={styles.containerListProduct}>
           {
@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
+    marginBottom: 100
     // justifyContent: "space-between"
   },
   textSearch: {
@@ -197,6 +198,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 25,
     position: "relative",
-    paddingBottom: 100
+    // marginBottom: 100
   }
 })

@@ -1,24 +1,35 @@
-import React, { useContext } from 'react'
-import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useContext, useState, useRef } from 'react'
+import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, ScrollView, Pressable } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Context } from '../../context'
+import SheetEdit from './sheet.edit'
+import RBSheet from "react-native-raw-bottom-sheet";
 
 const { width, height } = Dimensions.get("window")
 
 const data = [
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
-  { nama: "" },
+  { nama: "1" },
+  { nama: "2" },
+  { nama: "3" },
+  { nama: "4" },
+  { nama: "5" },
+  { nama: "6" },
+  { nama: "7" },
+  { nama: "8" },
+  { nama: "9" },
+  { nama: "10" },
 ]
 const ListTransaction = ({ navigation }) => {
   const { dispatch } = useContext(Context)
+  const [show, setShow] = useState(false)
+  const [index, setIndex] = useState(0)
+  const refRBSheet = useRef();
+
+  const openSheetEdit = (index) => {
+    refRBSheet.current.open()
+    setIndex(index)
+  }
+
   return (
     <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
       <View style={styles.container}>
@@ -33,19 +44,19 @@ const ListTransaction = ({ navigation }) => {
                   <Text style={{ fontWeight: "600", fontSize: 18 }}>Kopi O</Text>
                   <Text style={styles.TextPrice}>Rp. 6,000</Text>
                 </View>
-                <View style={styles.contentright}>
-                  <TouchableOpacity style={styles.btnPlusMinus}>
-                    <Icon name="minus" />
-                  </TouchableOpacity>
-                  <TextInput value="1" style={styles.InputQty} maxLength={1} editable={false} />
-                  <TouchableOpacity style={styles.btnPlusMinus}>
-                    <Icon name="plus" />
-                  </TouchableOpacity>
+                <View >
+                  <TextInput value="1" style={styles.InputQty} editable={false} />
+                </View>
+                <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "flex-end" }}>
+                  <Pressable style={styles.buttonEdit} onPress={() => openSheetEdit(index)}>
+                    <Text style={styles.textEdit}>Edit</Text>
+                  </Pressable>
                 </View>
               </View>
 
             ))
           }
+          <SheetEdit refRBSheet={refRBSheet} data={data[index]} />
         </View>
 
         <View style={styles.containerCard} >
@@ -73,6 +84,25 @@ const ListTransaction = ({ navigation }) => {
 export default ListTransaction
 
 const styles = StyleSheet.create({
+  InputQty: { color: "black", backgroundColor: "#F2F2F2", textAlign: "center", alignItems: "center", justifyContent: "center", borderRadius: 5, marginHorizontal: 20, maxHeight: 30, padding: 0 },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  textEdit: {
+    color: "#fff"
+  },
+  buttonEdit: {
+    borderWidth: 1,
+    padding: 7,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    backgroundColor: "#000",
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "70%"
+  },
   TextPayment: {
     color: "#fff",
     fontSize: 17,
@@ -116,7 +146,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     // backgroundColor: "red",
     marginTop: width / 20,
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   containerCard: {
     backgroundColor: "#fff",

@@ -43,7 +43,7 @@ const Home = () => {
 
 
       {
-        data.map(item => (
+        data.map((item, index) => (
           <Tab.Screen
             name={item.name}
             component={item.component}
@@ -64,6 +64,7 @@ const Home = () => {
                 </View>
               )
             }}
+            key={index}
           />
 
         ))
