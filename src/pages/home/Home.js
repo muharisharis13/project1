@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import History from '../history/History';
+import History from '../Admin/history/History';
 const Tab = createBottomTabNavigator();
-import Setting from '../setting/Setting';
+import Setting from '../Admin/setting/Setting';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Icon2 from 'react-native-vector-icons/FontAwesome'
-import ProductList from '../ProductList/ProductList';
+import ProductList from '../Admin/ProductList/ProductList';
+import DashboardSuperAdmin from "../SuperAdmin/Dashboard"
 
 const { width, height } = Dimensions.get("window")
 
@@ -30,22 +31,40 @@ const data = [
   },
 ]
 
+const dataSuperAdmin = [
+  {
+    name: "Dashboard",
+    component: DashboardSuperAdmin,
+    iconName: "home"
+  }
+]
+
 const Home = ({ navigation }) => {
 
 
   return (
-
     <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: { position: 'absolute', bottom: 30, width: "95%", marginHorizontal: "2.5%", height: 70, borderRadius: 50, borderWidth: 0 },
+      screenOptions={({ navigation, route }) => {
+        if (route.name === "Setting" && navigation.isFocused()) {
+          return ({
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarStyle: { position: 'absolute', bottom: 30, width: "95%", marginHorizontal: "2.5%", height: 70, borderRadius: 50, borderWidth: 0, opacity: 0 },
+          })
+        }
+        else {
+          return ({
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarStyle: { position: 'absolute', bottom: 30, width: "95%", marginHorizontal: "2.5%", height: 70, borderRadius: 50, borderWidth: 0, opacity: 1 },
+          })
+        }
       }}
     >
 
 
       {
-        data.map((item, index) => (
+        dataSuperAdmin.map((item, index) => (
           <Tab.Screen
             name={item.name}
             component={item.component}
@@ -63,18 +82,22 @@ const Home = ({ navigation }) => {
                       : null
                   }
 
-                </View>
-              )
+                  </View>
+                ),
+                headerStyle: {
+                  backgroundColor: "red"
+                }
 
 
-            }}
-            key={index}
-          />
+              }}
+              key={index}
+            />
 
-        ))
+          ))
       }
 
     </Tab.Navigator>
+
   )
 }
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from 'react'
 import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, ScrollView, Pressable } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { Context } from '../../context'
+import { Context } from '../../../context/index'
 import SheetEdit from './sheet.edit'
 import RBSheet from "react-native-raw-bottom-sheet";
 
@@ -87,7 +87,7 @@ const ListTransaction = ({ navigation }) => {
                 <Text>Rp. 20.000</Text>
               </View>
             </View>
-            </View>
+          </View>
 
           <View style={{ marginTop: 20 }}>
             <TextInput placeholder="Bayar" style={styles.inputText} placeholderTextColor="#cccc" keyboardType="numeric" />
@@ -98,7 +98,7 @@ const ListTransaction = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-    </ScrollView>
+      </ScrollView>
 
     </View >
   )

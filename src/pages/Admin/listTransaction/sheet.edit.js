@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable, ScrollView, TextInput, Dimensions, T
 import RBSheet from "react-native-raw-bottom-sheet";
 const { width, height } = Dimensions.get("window")
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { inputCurrency } from '../../utl/format-currency'
+import { inputCurrency } from '../../../utl/format-currency'
 
 const SheetEdit = ({ refRBSheet, data }) => {
 
@@ -43,6 +43,9 @@ const SheetEdit = ({ refRBSheet, data }) => {
         <View style={{ textAlign: 'center', justifyContent: "center", alignItems: "center", marginVertical: 20 }}>
           <Text style={{ fontWeight: "600", fontSize: 20 }}>
             Kopi O
+          </Text>
+          <Text>
+            Tshirt01
           </Text>
         </View>
 

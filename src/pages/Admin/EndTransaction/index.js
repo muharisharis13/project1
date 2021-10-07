@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { Context } from '../../context'
+import { Context } from '../../../context'
 
 const { width, height } = Dimensions.get("window")
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image, StatusBar, Pressable } from 'react-native'
 import Icon from "react-native-vector-icons/Feather"
-import { Context } from '../../context'
+import { Context } from '../../../context'
 
 
 const data = [
@@ -52,19 +52,19 @@ const ProductList = ({ navigation }) => {
         backgroundColor={scroll > 90 ? "transparent" : "transparent"} barStyle="dark-content" translucent={true} />
       {
         data.length > 0 ?
-          <TouchableOpacity style={styles.btnCart} onPress={() => navigation.navigate("ListTransaction")}>
+          <Pressable style={styles.btnCart} onPress={() => navigation.navigate("ListTransaction")}>
             <View>
               <Icon name="shopping-bag" style={{ fontSize: 25, color: "#fff" }} />
               <Text style={styles.TextLengthCart}>{data.length}</Text>
             </View>
-          </TouchableOpacity>
+          </Pressable>
           : null
       }
-        <View>
-          <TouchableOpacity style={styles.Search} onPress={() => navigation.navigate("Search")}>
-            <Text style={styles.textSearch}>Search </Text>
-          </TouchableOpacity>
-        </View>
+      <View>
+        <TouchableOpacity style={styles.Search} onPress={() => navigation.navigate("Search")}>
+          <Text style={styles.textSearch}>Search </Text>
+        </TouchableOpacity>
+      </View>
       <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
 
         <View style={styles.containerListProduct}>
