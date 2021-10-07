@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Details from '../detail/Details';
+import History from '../history/History';
 const Tab = createBottomTabNavigator();
 import Setting from '../setting/Setting';
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -16,12 +16,12 @@ const data = [
   {
     name: "Produk",
     component: ProductList,
-    iconName: "product-hunt"
+    iconName: "home"
   },
   {
-    name: "Details",
-    component: Details,
-    iconName: "home"
+    name: "History",
+    component: History,
+    iconName: "tasks"
   },
   {
     name: "Setting",
@@ -30,7 +30,9 @@ const data = [
   },
 ]
 
-const Home = () => {
+const Home = ({ navigation }) => {
+
+
   return (
 
     <Tab.Navigator
@@ -63,6 +65,8 @@ const Home = () => {
 
                 </View>
               )
+
+
             }}
             key={index}
           />

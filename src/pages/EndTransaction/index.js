@@ -42,12 +42,30 @@ const EndTransaction = ({ navigation }) => {
             }
           </View>
 
-          <View style={styles.containerContent}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.TextPrice}>Total</Text>
+          <View >
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.TextPrice}>Total</Text>
+              </View>
+              <View style={styles.TextPrice}>
+                <Text>Rp. 20.000</Text>
+              </View>
             </View>
-            <View style={styles.TextPrice}>
-              <Text>Rp. 20.000</Text>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.TextPrice}>Yang Di Bayar</Text>
+              </View>
+              <View style={styles.TextPrice}>
+                <Text>Rp. 20.000</Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "row", marginTop: 30 }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.TextPrice}>Kembalian</Text>
+              </View>
+              <View style={styles.TextPrice}>
+                <Text>Rp. 20.000</Text>
+              </View>
             </View>
           </View>
 
@@ -91,7 +109,7 @@ const styles = StyleSheet.create({
     height: 25
   },
   TextPrice: {
-    fontSize: 18
+    fontSize: 15
   },
   TitleCard: {
     fontWeight: "800",

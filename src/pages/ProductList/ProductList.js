@@ -49,7 +49,7 @@ const ProductList = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor={scroll > 90 ? "white" : "transparent"} barStyle="dark-content" translucent={true} />
+        backgroundColor={scroll > 90 ? "transparent" : "transparent"} barStyle="dark-content" translucent={true} />
       {
         data.length > 0 ?
           <TouchableOpacity style={styles.btnCart} onPress={() => navigation.navigate("ListTransaction")}>

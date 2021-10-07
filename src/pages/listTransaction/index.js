@@ -31,8 +31,8 @@ const ListTransaction = ({ navigation }) => {
   }
 
   return (
-    <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView onScroll={event => dispatch({ type: "SCROLL", scroll: event.nativeEvent.contentOffset.y })}>
         <Text style={styles.title}>List Transaction</Text>
 
         <View style={styles.containerCard} >
@@ -62,28 +62,61 @@ const ListTransaction = ({ navigation }) => {
         <View style={styles.containerCard} >
           <Text style={styles.TitleCard}>Order Summary</Text>
 
-          <View style={styles.containerContent}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.TextPrice}>Total</Text>
+          <View >
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.TextPrice}>Total</Text>
+              </View>
+              <View style={styles.TextPrice}>
+                <Text>Rp. 20.000</Text>
+              </View>
             </View>
-            <View style={styles.TextPrice}>
-              <Text>Rp. 20.000</Text>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.TextPrice}>Yang Di Bayar</Text>
+              </View>
+              <View style={styles.TextPrice}>
+                <Text>Rp. 20.000</Text>
+              </View>
             </View>
+            <View style={{ flexDirection: "row", marginTop: 30 }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.TextPrice}>Kembalian</Text>
+              </View>
+              <View style={styles.TextPrice}>
+                <Text>Rp. 20.000</Text>
+              </View>
+            </View>
+            </View>
+
+          <View style={{ marginTop: 20 }}>
+            <TextInput placeholder="Bayar" style={styles.inputText} placeholderTextColor="#cccc" keyboardType="numeric" />
           </View>
 
           <TouchableOpacity style={styles.btnPayment} onPress={() => navigation.navigate("EndTransaction")}>
             <Text style={styles.TextPayment}> Payment</Text>
           </TouchableOpacity>
         </View>
-      </View>
 
     </ScrollView>
+
+    </View >
   )
 }
 
 export default ListTransaction
 
 const styles = StyleSheet.create({
+
+  inputText: {
+    backgroundColor: "transparent",
+    padding: 10,
+    height: 40,
+    borderRadius: 5,
+    color: "#000",
+    borderWidth: 1,
+    borderColor: "#ccc"
+  },
   InputQty: { color: "black", backgroundColor: "#F2F2F2", textAlign: "center", alignItems: "center", justifyContent: "center", borderRadius: 5, marginHorizontal: 20, maxHeight: 30, padding: 0 },
   contentContainer: {
     flex: 1,
@@ -128,7 +161,7 @@ const styles = StyleSheet.create({
     height: 25
   },
   TextPrice: {
-    fontSize: 18
+    fontSize: 15
   },
   TitleCard: {
     fontWeight: "800",
@@ -162,8 +195,9 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   container: {
-    marginVertical: 30,
+    // marginVertical: 30,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
+    marginTop: 30
   }
 })

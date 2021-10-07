@@ -10,6 +10,8 @@ const Stack = createNativeStackNavigator();
 import { Store } from './src/context/index'
 import ListTransaction from './src/pages/listTransaction';
 import EndTransaction from './src/pages/EndTransaction';
+import HistorySeeDetail from './src/pages/history/History.seedetail';
+import Setting from './src/pages/setting/Setting';
 
 
 const App = () => {
@@ -25,6 +27,8 @@ const App = () => {
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="ListTransaction" component={ListTransaction} />
           <Stack.Screen name="EndTransaction" component={EndTransaction} />
+          <Stack.Screen name="HistorySeeDetail" component={HistorySeeDetail} />
+          <Stack.Screen name="Setting" component={Setting} />
         </Stack.Navigator>
 
       </Store>
