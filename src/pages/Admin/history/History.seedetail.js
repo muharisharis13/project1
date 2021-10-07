@@ -22,7 +22,7 @@ const HistorySeeDetail = () => {
               <View style={{ marginBottom: 40 }}>
                 {
                   data.map((item, index) => (
-                    <View style={styles.containerProduct}>
+                    <View style={styles.containerProduct} key={index}>
                       <View>
                         <Text style={styles.TitleProduct}>Kopi O</Text>
                         <Text>Rp. 6,000</Text>

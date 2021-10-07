@@ -11,31 +11,39 @@ const index = () => {
         animated={true}
         backgroundColor="transparent" barStyle="dark-content" translucent={true} />
 
+
       <ScrollView>
-
-        <View style={styles.containerCardOmset}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={styles.TitleCardOmset}>Omset</Text>
-            <Text>17 April 2021</Text>
-          </View>
-          <Text style={styles.TextCardOmset}>Rp. 200,000,000</Text>
-        </View>
-
-        <View style={{ flexDirection: "row", marginVertical: 10 }}>
-          <View style={styles.containerCard}>
-            <Text style={styles.TitleCard}>Jumlah Produk</Text>
-            <Text style={styles.ContentCard}>200</Text>
-          </View>
-          <View style={styles.containerCard}>
-            <Text style={styles.TitleCard}>Jumlah Trans</Text>
-            <Text style={styles.ContentCard}>200</Text>
+        <View style={{ marginBottom: 100 }}>
+          <View style={styles.containerCardOmset}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+              <Text style={styles.TitleCardOmset}>Omset</Text>
+              <Text>17 April 2021</Text>
+            </View>
+            <Text style={styles.TextCardOmset}>Rp. 200,000,000</Text>
           </View>
 
+          <View style={{ flexDirection: "row", marginVertical: 10 }}>
+            <View style={styles.containerCard}>
+              <Text style={styles.TitleCard}>Jumlah Produk</Text>
+              <Text style={styles.ContentCard}>200</Text>
+            </View>
+            <View style={styles.containerCard}>
+              <Text style={styles.TitleCard}>Jumlah Trans</Text>
+              <Text style={styles.ContentCard}>200</Text>
+            </View>
+
+          </View>
+
+          <View style={{ marginBottom: 10 }}>
+            <LineChartJs legend="Penjualan" />
+          </View>
+
+          <View>
+            <LineChartJs legend="Pembelian" />
+          </View>
+
         </View>
 
-        <View>
-          <LineChartJs />
-        </View>
 
       </ScrollView>
     </View>
@@ -72,6 +80,6 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingTop: 30,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   }
 })

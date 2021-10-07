@@ -9,6 +9,8 @@ export default function Login({ navigation }) {
     phone_number: false,
     password: false
   })
+  const [phone_number, setPhone_number] = useState(0)
+  const [password, setPassword] = useState("")
 
   const focus = (type) => {
     switch (type) {
@@ -38,15 +40,15 @@ export default function Login({ navigation }) {
           <View style={{ marginBottom: 30 }}>
             <Text>Phone Number</Text>
             <TextInput placeholder="phone number" style={styles.input(isFocus.phone_number === true ? true : false)}
-              placeholderTextColor="#cccccc" keyboardType='numeric' onFocus={() => focus("phone_number")} onBlur={() => blur("phone_number")} />
+              placeholderTextColor="#cccccc" keyboardType='numeric' onFocus={() => focus("phone_number")} onBlur={() => blur("phone_number")} value={phone_number} onChangeText={(e) => setPhone_number(e)} />
           </View>
           <View style={{ marginBottom: 30 }}>
             <Text>Password</Text>
             <TextInput placeholder="phone number" style={styles.input(isFocus.password === true ? true : false)}
-              placeholderTextColor="#cccccc" secureTextEntry={true} onFocus={() => focus("password")} onBlur={() => blur("password")} autoCapitalize='none' />
+              placeholderTextColor="#cccccc" secureTextEntry={true} onFocus={() => focus("password")} onBlur={() => blur("password")} autoCapitalize='none' value={password} onChangeText={(e) => setPassword(e)} />
           </View>
           <View style={{ marginBottom: 30 }}>
-            <Pressable style={styles.buttonLogin} onPress={() => navigation.replace("Home")}>
+            <Pressable style={styles.buttonLogin} onPress={() => navigation.replace("Home", { phone_number: phone_number })}>
               <Text style={styles.TextLogin}>Login</Text>
             </Pressable>
           </View>

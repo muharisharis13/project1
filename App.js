@@ -11,6 +11,7 @@ import { Store } from './src/context/index'
 import ListTransaction from './src/pages/Admin//listTransaction';
 import EndTransaction from './src/pages/Admin//EndTransaction';
 import HistorySeeDetail from './src/pages/Admin/history/History.seedetail';
+import DetailProduct from './src/pages/SuperAdmin/Product.Detail';
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
           <Stack.Screen name="ListTransaction" component={ListTransaction} />
           <Stack.Screen name="EndTransaction" component={EndTransaction} />
           <Stack.Screen name="HistorySeeDetail" component={HistorySeeDetail} />
+          <Stack.Screen name="product.detail" component={DetailProduct} />
         </Stack.Navigator>
 
       </Store>

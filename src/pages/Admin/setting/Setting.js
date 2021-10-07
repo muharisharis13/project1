@@ -27,7 +27,7 @@ export default function Setting({ navigation }) {
             <View style={styles.Profile}>
               <Text style={styles.TextProfile}>M</Text>
             </View>
-            <View style={{ marginVertical: 7 }}>
+            <View style={{ marginVertical: 7, alignItems: "center", justifyContent: "center" }}>
               <Text style={styles.TextNama}>Muharis</Text>
               <Text >Karyawan</Text>
             </View>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     height: height / 10,
     paddingTop: 30,
     justifyContent: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     flexDirection: "row",
     justifyContent: "space-between",
   },
