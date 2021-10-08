@@ -26,9 +26,15 @@ const ListProduct = ({ navigation }) => {
         </View>
       </Pressable>
       <AddProduct refRBSheet={refRBSheetAdd} />
+
+      <View>
+        <Pressable style={styles.Search} onPress={() => navigation.navigate("Search")}>
+          <Text style={styles.textSearch}>Search </Text>
+        </Pressable>
+      </View>
       <ScrollView >
 
-        <View style={{ marginBottom: 100, flexDirection: "row", flexWrap: "wrap" }}>
+        <View style={{ marginBottom: 150, flexDirection: "row", flexWrap: "wrap" }}>
           {
             dataProduct.map((item, index) => (
               <View style={styles.containerCardProduct} key={index}>
@@ -78,7 +84,7 @@ const styles = StyleSheet.create({
   },
   btnCart: {
     position: "absolute",
-    bottom: 120,
+    bottom: 160,
     right: 30,
     zIndex: 99,
     elevation: 99,
@@ -148,7 +154,7 @@ const styles = StyleSheet.create({
   },
   textSearch: {
     color: "#707070",
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "600"
   },
   Search: {

@@ -12,6 +12,7 @@ import ListTransaction from './src/pages/Admin//listTransaction';
 import EndTransaction from './src/pages/Admin//EndTransaction';
 import HistorySeeDetail from './src/pages/Admin/history/History.seedetail';
 import DetailProduct from './src/pages/SuperAdmin/Product.Detail';
+import SplashScreen from './src/pages/splash';
 
 
 
@@ -20,9 +21,10 @@ const App = () => {
     <NavigationContainer >
       <Store>
 
-        <Stack.Navigator initialRouteName="Login" screenOptions={{
+        <Stack.Navigator initialRouteName="Splash" screenOptions={{
           headerShown: false
         }}>
+          <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Search" component={Search} />

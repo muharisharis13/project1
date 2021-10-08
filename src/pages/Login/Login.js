@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, SafeAreaView, ScrollView, Dimensions, Pressable } from 'react-native'
-
+import { StyleSheet, Text, View, TextInput, SafeAreaView, ScrollView, Dimensions, Pressable, StatusBar } from 'react-native'
+import { methodPost } from '../../service/methodApi'
+import { getData, storeData } from '../../utl/asyncStorage'
 
 const { width, height } = Dimensions.get("window")
 
@@ -33,14 +34,37 @@ export default function Login({ navigation }) {
     }
   }
 
+
+  const btnLogin = () => {
+    methodPost({
+      endpoint: "/login", data: {
+        phone_number: `0${phone_number}`,
+        password: password,
+      }
+    })
+      .then(res => {
+
+        if (res.success) {
+          console.log(res)
+          storeData({ value: res.success, key: "data_user" })
+          storeData({ value: res.token, key: "token" })
+          // console.log("ini dia", getData("data_user"))
+        }
+      })
+  }
+
+
+
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.container} >
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="transparent" barStyle="dark-content" translucent={true} />
         <View style={styles.ContainerInput}>
           <View style={{ marginBottom: 30 }}>
             <Text>Phone Number</Text>
             <TextInput placeholder="phone number" style={styles.input(isFocus.phone_number === true ? true : false)}
-              placeholderTextColor="#cccccc" keyboardType='numeric' onFocus={() => focus("phone_number")} onBlur={() => blur("phone_number")} value={phone_number} onChangeText={(e) => setPhone_number(e)} />
+            placeholderTextColor="#cccccc" keyboardType='numeric' onFocus={() => focus("phone_number")} onBlur={() => blur("phone_number")} value={phone_number} onChangeText={(e) => setPhone_number(parseInt(e))} />
           </View>
           <View style={{ marginBottom: 30 }}>
             <Text>Password</Text>
@@ -48,14 +72,13 @@ export default function Login({ navigation }) {
               placeholderTextColor="#cccccc" secureTextEntry={true} onFocus={() => focus("password")} onBlur={() => blur("password")} autoCapitalize='none' value={password} onChangeText={(e) => setPassword(e)} />
           </View>
           <View style={{ marginBottom: 30 }}>
-            <Pressable style={styles.buttonLogin} onPress={() => navigation.replace("Home", { phone_number: phone_number })}>
+          <Pressable style={styles.buttonLogin} onPress={() => btnLogin()}>
+            {/* <Pressable style={styles.buttonLogin} onPress={() => navigation.replace("Home", { phone_number: phone_number })}> */}
               <Text style={styles.TextLogin}>Login</Text>
             </Pressable>
           </View>
-        </View>
-
-      </SafeAreaView>
-    </ScrollView>
+      </View>
+    </SafeAreaView>
   )
 }
 
@@ -98,7 +121,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "50%",
-    marginBottom: "10%"
   }
 })
