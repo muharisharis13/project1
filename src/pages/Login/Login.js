@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, ScrollView, Dimensions, Pressable, StatusBar } from 'react-native'
 import { methodPost } from '../../service/methodApi'
-import { getData, storeData } from '../../utl/asyncStorage'
 
 const { width, height } = Dimensions.get("window")
 
@@ -42,16 +41,16 @@ export default function Login({ navigation }) {
         password: password,
       }
     })
-      .then(res => {
+      .then(async res => {
 
         if (res.success) {
           console.log(res)
-          storeData({ value: res.success, key: "data_user" })
-          storeData({ value: res.token, key: "token" })
-          // console.log("ini dia", getData("data_user"))
+
+
         }
       })
   }
+
 
 
 
