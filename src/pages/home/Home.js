@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import History from '../Admin/history/History';
 const Tab = createBottomTabNavigator();
 import Setting from '../Admin/setting/Setting';
-import Icon from 'react-native-vector-icons/Ionicons'
 import Icon2 from 'react-native-vector-icons/FontAwesome'
 import ProductList from '../Admin/ProductList/ProductList';
 import DashboardSuperAdmin from "../SuperAdmin/Dashboard"
 import ListProduct from '../SuperAdmin/Product';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get("window")
 
@@ -57,15 +56,26 @@ const dataSuperAdmin = [
 
 const Home = ({ navigation, route }) => {
 
-  const { phone_number } = route.params
+  const [role, setRole] = useState(10)
 
-  useEffect(() => {
-    if (phone_number >= 3) {
-      return navigation.replace("Login")
+
+
+  const getDataStore = async () => {
+    try {
+      const role1 = await AsyncStorage.getItem("role")
+
+      return setRole(role1)
+    } catch (err) {
+      console.log("error", err)
     }
-  }, [])
+  }
 
-  if (parseInt(phone_number) === 1) {
+  useEffect(async () => {
+    getDataStore()
+  }, [])
+  // console.log("role", )
+
+  if (AsyncStorage.getItem("role") === 1) {
     return (
       <Tab.Navigator
         screenOptions={({ navigation, route }) => {
@@ -124,7 +134,7 @@ const Home = ({ navigation, route }) => {
 
     )
   }
-  else if (parseInt(phone_number) === 2) {
+  else if (AsyncStorage.getItem("role") === 2) {
     return (
       <Tab.Navigator
         screenOptions={({ navigation, route }) => {
@@ -184,8 +194,9 @@ const Home = ({ navigation, route }) => {
     )
   }
   else {
+    // getDataStore("role")
     return <View>
-      <Text>Nothing Here</Text>
+      <Text>rNothing Hee</Text>
     </View>
   }
 

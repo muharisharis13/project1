@@ -7,6 +7,11 @@ export const reducer = (state, action) => {
         ...state,
         scroll: action.scroll
       }
+    case "LOADING":
+      return {
+        ...state,
+        loading: action.loading
+      }
 
   }
 }

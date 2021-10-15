@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, ScrollView, Dimensions, Pressable, StatusBar } from 'react-native'
-import { methodPost } from '../../service/methodApi'
+import { methodPost } from '../../service/methodApi';
+import { getDataStore, storeData } from '../../service/asyncStorage';
+import LoadingApp from '../../component/loading'
 
 const { width, height } = Dimensions.get("window")
 
@@ -11,6 +13,7 @@ export default function Login({ navigation }) {
   })
   const [phone_number, setPhone_number] = useState(0)
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const focus = (type) => {
     switch (type) {
@@ -35,6 +38,7 @@ export default function Login({ navigation }) {
 
 
   const btnLogin = () => {
+    setLoading(true)
     methodPost({
       endpoint: "/login", data: {
         phone_number: `0${phone_number}`,
@@ -44,14 +48,24 @@ export default function Login({ navigation }) {
       .then(async res => {
 
         if (res.success) {
-          console.log(res)
-
-
+          console.log(res.success.role)
+          storeData({ value: res.token, key: "token" })
+          storeData({ value: res.success.role, key: "role" })
+          navigation.replace("Home")
         }
+        setLoading(false)
       })
   }
 
 
+
+
+
+
+
+  if (loading) {
+    return <LoadingApp />
+  }
 
 
   return (
@@ -60,6 +74,9 @@ export default function Login({ navigation }) {
         animated={true}
         backgroundColor="transparent" barStyle="dark-content" translucent={true} />
         <View style={styles.ContainerInput}>
+        <Text>
+
+        </Text>
           <View style={{ marginBottom: 30 }}>
             <Text>Phone Number</Text>
             <TextInput placeholder="phone number" style={styles.input(isFocus.phone_number === true ? true : false)}
@@ -72,7 +89,6 @@ export default function Login({ navigation }) {
           </View>
           <View style={{ marginBottom: 30 }}>
           <Pressable style={styles.buttonLogin} onPress={() => btnLogin()}>
-            {/* <Pressable style={styles.buttonLogin} onPress={() => navigation.replace("Home", { phone_number: phone_number })}> */}
               <Text style={styles.TextLogin}>Login</Text>
             </Pressable>
           </View>

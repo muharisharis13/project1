@@ -1,4 +1,5 @@
 
 export const initialState = {
-  scroll: 0
+  scroll: 0,
+  loading: false
 }
