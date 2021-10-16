@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image, StatusBar, Pressable } from 'react-native'
 import Icon from "react-native-vector-icons/Feather"
 import { Context } from '../../../context'
+import { methodGET } from '../../../service/methodApi'
 
 
 const data = [
@@ -44,6 +45,20 @@ const data = [
 
 const ProductList = ({ navigation }) => {
   const { scroll, dispatch } = useContext(Context)
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  function loading1(props) { setLoading(props) }
+
+  useEffect(() => {
+    loading1(true)
+
+    methodGET({ endpoint: "/product/getProduct" })
+      .then(res => {
+        console.log("ini res", res)
+      })
+  }, [])
+
 
   return (
     <View style={styles.container}>

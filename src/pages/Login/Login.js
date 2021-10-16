@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, ScrollView, Dimensions, Pressable, StatusBar } from 'react-native'
 import { methodPost } from '../../service/methodApi';
 import { getDataStore, storeData } from '../../service/asyncStorage';
@@ -14,6 +14,19 @@ export default function Login({ navigation }) {
   const [phone_number, setPhone_number] = useState(0)
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+
+
+  useEffect(() => {
+    getDataStore("token")
+      .then(token => {
+        if (token) {
+          navigation.replace("Home")
+        }
+      })
+  }, [])
+
+
+
 
   const focus = (type) => {
     switch (type) {
@@ -48,7 +61,7 @@ export default function Login({ navigation }) {
       .then(async res => {
 
         if (res.success) {
-          console.log(res.success.role)
+          console.log(res.token)
           storeData({ value: res.token, key: "token" })
           storeData({ value: res.success.role, key: "role" })
           navigation.replace("Home")

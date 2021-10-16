@@ -9,6 +9,7 @@ import ProductList from '../Admin/ProductList/ProductList';
 import DashboardSuperAdmin from "../SuperAdmin/Dashboard"
 import ListProduct from '../SuperAdmin/Product';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getDataStore } from '../../service/asyncStorage';
 
 const { width, height } = Dimensions.get("window")
 
@@ -57,12 +58,13 @@ const dataSuperAdmin = [
 const Home = ({ navigation, route }) => {
 
   const [role, setRole] = useState(10)
+  const [token, setToken] = useState("")
 
 
 
-  const getDataStore = async () => {
+  const getDataStore1 = async () => {
     try {
-      const role1 = await AsyncStorage.getItem("role")
+      const role1 = JSON.parse(await AsyncStorage.getItem("role"))
 
       return setRole(role1)
     } catch (err) {
@@ -71,11 +73,12 @@ const Home = ({ navigation, route }) => {
   }
 
   useEffect(async () => {
-    getDataStore()
+    getDataStore1()
   }, [])
-  // console.log("role", )
 
-  if (AsyncStorage.getItem("role") === 1) {
+
+
+  if (role === "1") {
     return (
       <Tab.Navigator
         screenOptions={({ navigation, route }) => {
@@ -134,7 +137,7 @@ const Home = ({ navigation, route }) => {
 
     )
   }
-  else if (AsyncStorage.getItem("role") === 2) {
+  else if (role === "2") {
     return (
       <Tab.Navigator
         screenOptions={({ navigation, route }) => {
@@ -196,7 +199,6 @@ const Home = ({ navigation, route }) => {
   else {
     // getDataStore("role")
     return <View>
-      <Text>rNothing Hee</Text>
     </View>
   }
 

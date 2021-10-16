@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar } from 'react-native'
 
 const SplashScreen = ({ navigation }) => {
 
+
   useEffect(() => {
     setTimeout(() => navigation.replace("Login"), 3000)
   })

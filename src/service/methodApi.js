@@ -1,16 +1,24 @@
 
 import { REACT_BASE_URL } from "@env"
-
+import { getDataStore } from './asyncStorage'
 
 const baseApi = `${REACT_BASE_URL}/adm`
 
+let token = getDataStore("token")
+
+
+
+// getDataStore("token").then(result => console.log("hahaha token", result))
+
+console.log("haha token", token)
+
 const headers = {
-  // "Authorization": `Bearer ${token && token}`,
+  "Authorization": `Bearer ${token && token}`,
   Accept: 'application/json',
   'Content-Type': 'application/json'
 }
 const headerImg = {
-  // "Authorization": `Bearer ${token && token}`,
+  "Authorization": `Bearer ${token && token}`,
 }
 
 
